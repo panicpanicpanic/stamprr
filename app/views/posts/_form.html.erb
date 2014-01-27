@@ -1,0 +1,27 @@
+<%= form_for @post, :url => {:action => "update" } do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+  Current Tags: <%= raw @post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+    </p>
+  <div class="field">
+      <%= f.label :tag_list, 'Tags (seperated by commas)' %>
+        <%= f.text_field :tag_list, :placeholder => 'Put your tags here.' %>
+  </div>
+
+  <br>
+  <div class="actions">
+      <button type="button" class="btn btn-success"><%= f.submit "Update Post",  :class => "btn btn-success" %></button>
+    </div>
+  </div>
+<% end %>

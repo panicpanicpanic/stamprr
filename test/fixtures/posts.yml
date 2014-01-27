@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  brand_id: 1
+  facebook_link: MyString
+  post_copy: MyString
+  post_date: 2013-08-19 17:10:37
+  post_total_reach: MyString
+  post_total_engagement: MyString
+
+two:
+  brand_id: 1
+  facebook_link: MyString
+  post_copy: MyString
+  post_date: 2013-08-19 17:10:37
+  post_total_reach: MyString
+  post_total_engagement: MyString

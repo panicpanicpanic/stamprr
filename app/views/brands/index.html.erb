@@ -1,0 +1,20 @@
+<br>
+<br>
+<% if current_user %>
+<div class="containter text-center">
+  <div class="alert alert-dismissable alert-success">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <h2><strong>Welcome to Taglanida, <%= current_user.user_name %> !</strong></h2>
+    <p>Choose a brand to tag <strong> below</strong>.</p>
+  </div>
+  <h1>Select a Brand!</h1>
+  <%= form_tag posts_path(@posts), :method => :get do %>
+    <p><%= collection_select @posts, :brand_id,  Brand.all(:order => 'brand_name ASC'), :id, :brand_name, include_blank: 'Select a brand' %></p>
+    <p><h2><%= submit_tag "Pull Posts!", class: "btn btn-medium", :style =>"text-decoration:none",:name => nil, :controller=> 'post', :action => 'index' %><p></h2>
+  </div>
+  <% end %>
+<% else %>
+  <script type="text/javascript">
+    window.location.href="/fail"
+ </script>
+<% end %>

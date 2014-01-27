@@ -1,0 +1,38 @@
+<% if current_user %>
+<div class="container">
+<h1>Edit this Post:</h1>
+
+<p>
+  <b>Brand:</b>
+  <%= Brand.find(:all, :conditions => {:id => @post.brand_id})[0].brand_name %>
+</p>
+
+<p>
+  <b>Facebook Link:</b>
+  <%= link_to @post.facebook_link, @post.facebook_link %>
+</p>
+
+<p>
+  <b>Post Copy:</b>
+  <%= @post.post_copy %>
+</p>
+
+<p>
+  <b>Post Date:</b>
+  <%= (@post.post_date).strftime('%a, %d %b %Y') %>
+</p>
+
+<p>
+  <img src=<%= @post.thumbnail_image %> class="img-thumbnail"></td>
+</p>
+<br>
+<p>
+  <%= render 'form' %>
+  </p>
+</div>
+
+<% else %>
+  <script type="text/javascript">
+    window.location.href="/fail"
+  </script>
+<% end %>

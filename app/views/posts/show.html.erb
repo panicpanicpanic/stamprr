@@ -1,0 +1,63 @@
+<% if current_user %>
+<br>
+<div class="containter">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Brand:</b>
+  <%= Brand.find(@post.brand_id).brand_name %>
+</p>
+
+<p>
+  <b>Facebook link:</b>
+  <%= link_to @post.facebook_link, @post.facebook_link %>
+</p>
+
+<p>
+  <b>Post copy:</b>
+  <%= @post.post_copy %>
+</p>
+
+<p>
+  <b>Post date:</b>
+  <%= (@post.post_date).strftime('%a, %d %b %Y') %>
+</p>
+
+<p>
+`  <img src=<%= @post.thumbnail_image %> >
+</p>
+
+<p>
+Current Tags: <%= raw @post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+</p>
+
+<p>
+  <b>Last updated by: </b><%= current_user.user_name %> on <%= @post.updated_at.strftime('%a, %d %b %Y') %>
+</p>
+
+
+<p>
+<div class="btn btn-info "><%= link_to "Edit Post",edit_post_path(@post),  :class => "btn-info"%></div>
+  <div class="containter text-center">
+    <ul class="pager">
+      <% previous_post = Post.find((@post.id.to_i) - 1) %>
+      <% next_post = Post.find((@post.id.to_i) + 1) %>
+      <% if previous_post.brand_id = @post.brand_id %>
+        <li><%= link_to 'Previous Post', edit_post_path(previous_post) %></li>
+      <% else %>
+        <li class="previous disabled text-right" href="#"><%= link_to 'Previous Post', post_path(previous_post) %></li>
+      <% end %>
+      <% if next_post.brand_id = @post.brand_id %>
+        <li> <%= link_to 'Next Post', edit_post_path(next_post) %></li>
+      <% else %>
+        <li class="previous disabled text-right" href="#"> <%= link_to 'Next Post', edit_post_path(next_post) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<% else %>
+  <script type="text/javascript">
+    window.location.href="/fail"
+  </script>
+<% end %>
